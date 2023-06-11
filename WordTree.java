@@ -1,6 +1,7 @@
 // 4645G-04 - Algoritmos e Estruturas de Dados I
 // 2023-1
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WordTree {
@@ -14,12 +15,19 @@ public class WordTree {
         private List<CharNode> children;
 
         public CharNode(char character) {
-            ...
+        
+        this.character = character;
+        this.significado = "";
+        this.isFinal = false;
+        this.father = null;
+        this.children = new ArrayList<>();
         }
         
         public CharNode(char character, boolean isFinal) {
-            ...
-        }
+        this.character = character;
+        this.isFinal = isFinal;
+        this.children = new ArrayList<>();
+    }
 
         /**
         * Adiciona um filho (caracter) no nodo. Não pode aceitar caracteres repetidos.
@@ -27,7 +35,14 @@ public class WordTree {
         * @param isfinal - se é final da palavra ou não
         */
         public CharNode addChild (char character, boolean isfinal) {
-            // ...
+            CharNode child = findChildChar(character);
+        if (child == null) {
+            child = new CharNode(character, isFinal);
+            children.add(child);
+        } else {
+            child.isFinal = isFinal;
+        }
+        return child;
         }
         
         public int getNumberOfChildren () {
@@ -51,7 +66,12 @@ public class WordTree {
         * @param character - caracter a ser encontrado.
         */
         public CharNode findChildChar (char character) {
-            //...
+            for (CharNode child : children) {
+            if (child.character == character) {
+                return child;
+            }
+        }
+        return null;
         }
         
     }
