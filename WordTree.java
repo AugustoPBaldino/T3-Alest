@@ -7,7 +7,7 @@ import java.util.List;
 public class WordTree {
     
     // Classe interna
-    private class CharNode {
+    public class CharNode {
         private char character;
 	    private String significado;
         private boolean isFinal;
@@ -46,11 +46,14 @@ public class WordTree {
         }
         
         public int getNumberOfChildren () {
-            //...
+            return children.size();
         }
         
         public CharNode getChild (int index) {
-            //...
+            if (index >= 0 && index < children.size()) {
+                return children.get(index);
+            }
+            return null;
         }
 
         /**
@@ -58,7 +61,15 @@ public class WordTree {
          * @return a palavra
          */
         private String getWord() {
-            //...
+            StringBuilder wordBuilder = new StringBuilder();
+            CharNode currentNode = this;
+
+            while (currentNode != null) {
+                wordBuilder.insert(0, currentNode.character);
+                currentNode = currentNode.father;
+            }
+
+            return wordBuilder.toString();
         }
         
         /**
@@ -101,13 +112,8 @@ public class WordTree {
         //...
     }
     
-    /**
-    *Adiciona palavra na estrutura em árvore
-    *@param word
-    */
-    public void addWord(String word) {
-        //...
-    }
+
+    
     
     /**
      * Vai descendo na árvore até onde conseguir encontrar a palavra
