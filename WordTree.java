@@ -12,7 +12,7 @@ public class WordTree {
     }
 
     public void printNodes() {
-        root.printNodes(0);
+        root.printNodes("");
     }
 
     public void printTree() {

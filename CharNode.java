@@ -32,58 +32,49 @@ public class CharNode {
 
     if (childNode == null) {
         childNode = new CharNode(primeiraLetra, word.length() == 1 ? significado : "");
+        childNode.father = this; // Define o pai corretamente
         subtrees.add(childNode);
     }
 
     return childNode.addChild(word.substring(1), significado);
 }
 
-public void printTree(String word) {
-    String currentWord = word + this.character; // Atualiza a palavra atual com o caractere atual
 
+public void printTree(String word) {
     if (!significado.isEmpty()) {
-        System.out.println(currentWord + " - significado: " + significado);
+        System.out.println(word + this.character + " - significado: " + significado);
     }
 
     for (CharNode node : subtrees) {
-        node.printTree(currentWord); // Passa a palavra atualizada para a chamada recursiva
+        node.printTree(word + this.character); // Passa a palavra atualizada para a chamada recursiva
     }
 }
 
-
-    public void printTreeWithoutSignificado(String word) {
-        if (this.character != '.') {
-            word += this.character;
-        }
-        if (!significado.isEmpty()) {
-            System.out.println(word);
-        }
-
-        for (CharNode node : subtrees) {
-            node.printTreeWithoutSignificado(word);
-        }
+public void printTreeWithoutSignificado(String word) {
+    if (!significado.isEmpty()) {
+        System.out.println(word + this.character);
     }
 
-    public void printNodes(int nivel) {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i <= nivel; i++) {
-            builder.append("-");
-        }
-        String nivelString = builder.toString();
-
-        System.out.print(nivel + nivelString + this.character);
-        if (!significado.isEmpty()) {
-            System.out.println(" significado: " + significado);
-        } else {
-            System.out.println();
-        }
-
-        nivel++;
-
-        for (CharNode node : subtrees) {
-            node.printNodes(nivel);
-        }
+    for (CharNode node : subtrees) {
+        node.printTreeWithoutSignificado(word + this.character);
     }
+}
+
+public void printNodes(String prefix) {
+    
+    
+    String nodePrefix = prefix + this.character;
+
+    if (!significado.isEmpty()) {
+        System.out.println(nodePrefix + "- significado: " + significado);
+    } else {
+        System.out.println(nodePrefix);
+    }
+
+    for (CharNode node : subtrees) {
+        node.printNodes(nodePrefix);
+    }
+}
 
     public CharNode findPrefix(String word) {
         if (word.isEmpty()) {
