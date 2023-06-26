@@ -1,7 +1,6 @@
 public class Palavra {
     private String palavra;
     private String significado;
-    
 
     public Palavra(String palavra, String significado) {
         this.palavra = palavra;
@@ -21,5 +20,4 @@ public class Palavra {
         return palavra + ": " + significado + "\n";
     }
 
-    
 }

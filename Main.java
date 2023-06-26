@@ -45,25 +45,25 @@ public class Main {
         sb.append("====================================================================\n");
         return sb.toString();
     }
-    
+
     public static String capitalizeFirstLetter(String str) {
         if (str.isEmpty()) {
             return str;
         }
-        
+
         String result = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
         return result;
     }
-    
+
     public static void prefix(WordTree t) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o prefixo:");
         String prefixo = scanner.nextLine();
         prefixo = capitalizeFirstLetter(prefixo);
         System.out.println();
-        
+
         boolean temPrefixo = t.findAll(prefixo);
-        
+
         if (temPrefixo) {
             System.out.println("Entre as palavras acima, qual palavra você gostaria de saber o significado:");
             prefixo = scanner.nextLine();
@@ -72,15 +72,15 @@ public class Main {
             t.findSingleWord(prefixo);
         }
     }
-    
+
     public static void Menu(WordTree t) {
         Scanner scanner = new Scanner(System.in);
         int numSelect = 0;
-        
+
         while (numSelect != 9) {
             System.out.println(menuSelect());
             numSelect = scanner.nextInt();
-            
+
             if (numSelect == 1) {
                 t.printNodes();
             } else if (numSelect == 2) {
@@ -89,7 +89,7 @@ public class Main {
                 prefix(t);
             }
         }
-        
+
         scanner.close();
     }
 
