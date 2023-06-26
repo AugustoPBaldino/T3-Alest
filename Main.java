@@ -71,26 +71,36 @@ public class Main {
             System.out.println();
             t.findSingleWord(prefixo);
         }
+
     }
 
     public static void Menu(WordTree t) {
         Scanner scanner = new Scanner(System.in);
-        int numSelect = 0;
+        int numSelect;
 
-        while (numSelect != 9) {
+        do {
             System.out.println(menuSelect());
             numSelect = scanner.nextInt();
 
-            if (numSelect == 1) {
-                t.printNodes();
-            } else if (numSelect == 2) {
-                t.printTree();
-            } else if (numSelect == 3) {
-                prefix(t);
+            switch (numSelect) {
+                case 1:
+                    t.printNodes();
+                    break;
+                case 2:
+                    t.printTree();
+                    break;
+                case 3:
+                    prefix(t);
+                    break;
+                case 0:
+                    System.out.println("Encerrando o programa...");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+                    break;
             }
-        }
+        } while (numSelect != 0);
 
         scanner.close();
     }
-
 }

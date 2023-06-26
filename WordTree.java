@@ -1,5 +1,4 @@
 
-
 public class WordTree {
     private CharNode root;
 
