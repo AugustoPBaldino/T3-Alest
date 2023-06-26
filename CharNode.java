@@ -32,7 +32,7 @@ public class CharNode {
 
         if (childNode == null) {
             childNode = new CharNode(primeiraLetra, word.length() == 1 ? significado : "");
-            childNode.father = this; // Define o pai corretamente
+            childNode.father = this;
             subtrees.add(childNode);
         }
 
@@ -106,17 +106,6 @@ public class CharNode {
         System.out.println("Palavra não encontrada");
     }
 
-    public void ordenaAlfabetica() {
-        subtrees.sort(Comparator.comparing(node -> node.character));
-
-        for (CharNode node : subtrees) {
-            node.ordenaAlfabetica();
-        }
-    }
-
-    public static Comparator<CharNode> compareCharacters = new Comparator<CharNode>() {
-        public int compare(CharNode a, CharNode b) {
-            return Character.compare(a.character, b.character);
-        }
-    };
 }
+
+    

@@ -1,4 +1,4 @@
-import java.util.List;
+
 
 public class WordTree {
     private CharNode root;
@@ -7,7 +7,7 @@ public class WordTree {
         this.root = new CharNode('.', "");
     }
 
-    public void addWord(String word, String significado) {
+    public void addChild(String word, String significado) {
         root.addChild(word, significado);
     }
 
@@ -35,7 +35,4 @@ public class WordTree {
         root.findSingleWord(word, "");
     }
 
-    public void ordena() {
-        root.ordenaAlfabetica();
-    }
 }

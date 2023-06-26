@@ -24,7 +24,7 @@ public class Main {
         }
 
         for (Palavra palavra : lista) {
-            t.addWord(palavra.getPalavra(), palavra.getSignificado());
+            t.addChild(palavra.getPalavra(), palavra.getSignificado());
         }
     }
 
